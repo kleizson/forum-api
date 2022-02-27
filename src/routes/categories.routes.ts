@@ -12,4 +12,6 @@ categoriesRouter.post(
   categoriesController.post
 );
 
+categoriesRouter.get("/", categoriesController.getAll);
+
 export default categoriesRouter;

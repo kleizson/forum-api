@@ -19,4 +19,11 @@ export default {
       });
     }
   },
+  async getAll(_request: Request, response: Response): Promise<Response> {
+    const categories = await categoriesRepository.getAll();
+
+    return response.status(200).json({
+      categories,
+    });
+  },
 };

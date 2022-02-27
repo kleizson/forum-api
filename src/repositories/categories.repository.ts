@@ -10,4 +10,9 @@ export default {
       timestamp: getDatabase.ServerValue.TIMESTAMP,
     });
   },
+  async getAll() {
+    const result = await databaseRef.once("value");
+
+    return result;
+  },
 };
