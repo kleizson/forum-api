@@ -1,4 +1,5 @@
 import { applicationDefault, initializeApp } from "firebase-admin/app";
+import { getAuth } from "firebase-admin/auth";
 import { database } from "firebase-admin";
 
 initializeApp({
@@ -7,3 +8,4 @@ initializeApp({
 });
 
 export const getDatabase = database;
+export const auth = getAuth();
