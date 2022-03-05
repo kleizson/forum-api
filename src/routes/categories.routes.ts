@@ -10,7 +10,7 @@ const categoriesRouter = Router();
 categoriesRouter.post(
   "/",
   isAuthorized,
-  validator(categoriesSchema),
+  validator("body", categoriesSchema),
   categoriesController.post
 );
 

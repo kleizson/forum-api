@@ -1,9 +1,16 @@
 import { NextFunction, Request, Response } from "express";
 import Joi from "joi";
 
-export default function (validator: Joi.ObjectSchema) {
+type requestType = "body" | "params" | "query";
+
+export default function (
+  requestTypeParam: requestType,
+  validator: Joi.ObjectSchema
+) {
   return function (request: Request, response: Response, next: NextFunction) {
-    const { error } = validator.validate(request.body, { abortEarly: false });
+    const { error } = validator.validate(request[requestTypeParam], {
+      abortEarly: false,
+    });
     const valid = error == null;
 
     if (valid) {

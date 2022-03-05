@@ -1,8 +1,14 @@
 import { Response, Request } from "express";
+import {
+  QuestionParams,
+  QuestionsBody,
+  RequestBody,
+  RequestParams,
+} from "src/interfaces/request.interface";
 import questionsRepository from "../repositories/questions.repository";
 
 export default {
-  post(request: Request, response: Response): Response {
+  post(request: RequestBody<QuestionsBody>, response: Response): Response {
     try {
       questionsRepository.create(request.body);
 
@@ -24,6 +30,16 @@ export default {
 
     return response.status(200).json({
       questions,
+    });
+  },
+  async get(
+    request: RequestParams<QuestionParams>,
+    response: Response
+  ): Promise<Response> {
+    const question = await questionsRepository.get(request.params.questionUid);
+
+    return response.status(200).json({
+      question,
     });
   },
 };
