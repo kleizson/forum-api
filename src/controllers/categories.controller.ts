@@ -1,8 +1,14 @@
 import { Response, Request } from "express";
+import {
+  CategoryBody,
+  CategoryParams,
+  RequestBody,
+  RequestParams,
+} from "../interfaces/request.interface";
 import categoriesRepository from "../repositories/categories.repository";
 
 export default {
-  post(request: Request, response: Response): Response {
+  post(request: RequestBody<CategoryBody>, response: Response): Response {
     try {
       categoriesRepository.create(request.body);
 
@@ -23,7 +29,27 @@ export default {
     const categories = await categoriesRepository.getAll();
 
     return response.status(200).json({
-      categories,
+      categories: categories.val() || [],
     });
+  },
+  async delete(
+    request: RequestParams<CategoryParams>,
+    response: Response
+  ): Promise<Response> {
+    try {
+      categoriesRepository.remove(request.params.categoryUid);
+
+      return response.status(201).send();
+    } catch (error) {
+      if (error instanceof Error) {
+        return response.status(500).send({
+          error: error.message,
+        });
+      }
+
+      return response.status(500).send({
+        error: "Unknown create categories error",
+      });
+    }
   },
 };

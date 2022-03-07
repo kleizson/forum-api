@@ -7,19 +7,19 @@ import {
   questionsSchema,
 } from "../validators/questions.validator";
 
-const categoriesRouter = Router();
+const questionsRouter = Router();
 
-categoriesRouter.post(
+questionsRouter.post(
   "/",
   validator("body", questionsSchema),
   questionsController.post
 );
 
-categoriesRouter.get("/", questionsController.getAll);
-categoriesRouter.get(
+questionsRouter.get("/", questionsController.getAll);
+questionsRouter.get(
   "/:questionUid",
   validator("params", questionParams),
   questionsController.get
 );
 
-export default categoriesRouter;
+export default questionsRouter;

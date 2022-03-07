@@ -16,3 +16,21 @@ export type QuestionsBody = {
 export type QuestionParams = {
   questionUid: string;
 };
+
+export type AnswerBody = {
+  author: string;
+  body: string;
+  questionUid: string;
+};
+
+export type AnswerParams = {
+  questionUid: string;
+};
+
+export type CategoryBody = {
+  name: string;
+};
+
+export type CategoryParams = {
+  categoryUid: string;
+};

@@ -29,7 +29,7 @@ export default {
     const questions = await questionsRepository.getAll();
 
     return response.status(200).json({
-      questions,
+      questions: questions.val() || [],
     });
   },
   async get(
