@@ -4,10 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "start": "node dist/src/index.js",
     "dev": "dotenv -e .env -- ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix --ext .js,.ts ."
+    "lint:fix": "eslint --fix --ext .js,.ts .",
+    "postinstall": "yarn build"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
